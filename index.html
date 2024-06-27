@@ -18,6 +18,7 @@
             background-position: center;
             color: #333;
             overflow: hidden;
+            transition: background-color 0.5s;
         }
         .container {
             text-align: center;
@@ -26,6 +27,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: fadeIn 1s ease-in-out;
+            transition: transform 0.5s;
         }
         @keyframes fadeIn {
             from {
@@ -44,6 +46,7 @@
             letter-spacing: 2px;
             color: #4a4a4a;
             animation: scaleIn 1s ease-in-out;
+            transition: color 0.5s;
         }
         @keyframes scaleIn {
             from {
@@ -58,6 +61,7 @@
             margin-top: 10px;
             color: #666;
             animation: slideIn 1s ease-in-out;
+            transition: color 0.5s;
         }
         @keyframes slideIn {
             from {
@@ -86,13 +90,61 @@
             background-color: #0056b3;
             transform: scale(1.05);
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .overlay-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .close-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Басика на хелпера</h1>
-        <p class="subtitle">Подписывайтесь на мой сервер!</p>
-        <a href="https://discord.gg/fYuaDbUM" class="button">Мой сервер</a>
+        <p class="subtitle">Добро пожаловать на наш сайт!</p>
+        <a href="#" class="button" id="learn-more-btn">Узнать больше</a>
     </div>
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <p>Здесь вы можете узнать больше о нашем проекте.</p>
+            <button class="close-btn" id="close-btn">Закрыть</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('learn-more-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('overlay').style.display = 'flex';
+        });
+        document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('overlay').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
