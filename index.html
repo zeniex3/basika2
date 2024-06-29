@@ -4,9 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Басика на хелпера</title>
-    <link rel="icon" href="C:\Users\yy\basika2\Neues_Projekt_1" type="image/x-icon">
+    <link rel="icon" href="path/to/your/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-light: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1948&q=80');
+            --bg-dark: url('https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');
+            --text-light: #333;
+            --text-dark: #f0f0f0;
+            --container-bg-light: rgba(255, 255, 255, 0.9);
+            --container-bg-dark: rgba(0, 0, 0, 0.9);
+            --button-bg-light: #007bff;
+            --button-bg-dark: #0056b3;
+            --overlay-bg-light: white;
+            --overlay-bg-dark: #333;
+        }
+
         body {
             display: flex;
             justify-content: center;
@@ -14,29 +27,33 @@
             height: 100vh;
             margin: 0;
             font-family: 'Montserrat', 'Arial', sans-serif;
-            background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1948&q=80');
+            background-image: var(--bg-light);
             background-size: cover;
             background-position: center;
-            color: #333;
+            color: var(--text-light);
             overflow: hidden;
             transition: background-image 2s ease-in-out, color 1s ease-in-out;
         }
+
         body.dark-mode {
-            background-image: url('https://images.unsplash.com/photo-1489549132488-d00b7eee80f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');
-            color: #f0f0f0;
+            background-image: var(--bg-dark);
+            color: var(--text-dark);
         }
+
         .container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: var(--container-bg-light);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             animation: fadeIn 1s ease-in-out;
             transition: background-color 1s ease-in-out, transform 0.5s;
         }
+
         .container.dark-mode {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: var(--container-bg-dark);
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -47,18 +64,21 @@
                 transform: translateY(0);
             }
         }
+
         h1 {
             font-size: 2.5em;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 3px;
-            color: #4a4a4a;
+            color: var(--text-light);
             animation: scaleIn 1s ease-in-out;
             transition: color 1s ease-in-out;
         }
+
         h1.dark-mode {
-            color: #f0f0f0;
+            color: var(--text-dark);
         }
+
         @keyframes scaleIn {
             from {
                 transform: scale(0.8);
@@ -67,16 +87,19 @@
                 transform: scale(1);
             }
         }
+
         .subtitle {
             font-size: 1.2em;
             margin-top: 15px;
-            color: #666;
+            color: var(--text-light);
             animation: slideIn 1s ease-in-out;
             transition: color 1s ease-in-out;
         }
+
         .subtitle.dark-mode {
-            color: #ccc;
+            color: var(--text-dark);
         }
+
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -87,13 +110,14 @@
                 transform: translateX(0);
             }
         }
+
         .button {
             display: inline-block;
             margin-top: 30px;
             padding: 12px 24px;
             font-size: 1.1em;
             color: #fff;
-            background-color: #007bff;
+            background-color: var(--button-bg-light);
             border: none;
             border-radius: 8px;
             text-decoration: none;
@@ -101,10 +125,12 @@
             animation: fadeIn 1s ease-in-out 0.5s backwards;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
+
         .button:hover {
-            background-color: #0056b3;
+            background-color: var(--button-bg-dark);
             transform: scale(1.05);
         }
+
         .overlay {
             position: fixed;
             top: 0;
@@ -119,12 +145,14 @@
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
+
         .overlay.active {
             display: flex;
             opacity: 1;
         }
+
         .overlay-content {
-            background-color: white;
+            background-color: var(--overlay-bg-light);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -133,37 +161,44 @@
             transform: scale(0.9);
             transition: transform 0.5s ease-in-out;
         }
+
         .overlay-content.active {
             transform: scale(1);
         }
+
         .overlay-content.dark-mode {
-            background-color: #333;
-            color: #f0f0f0;
+            background-color: var(--overlay-bg-dark);
+            color: var(--text-dark);
         }
+
         .close-btn {
             margin-top: 20px;
             padding: 12px 24px;
             font-size: 1.1em;
             color: #fff;
-            background-color: #007bff;
+            background-color: var(--button-bg-light);
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .close-btn:hover {
-            background-color: #0056b3;
+            background-color: var(--button-bg-dark);
         }
+
         .button-group {
             display: flex;
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
         }
+
         .icon {
             margin-right: 10px;
             font-size: 1.3em;
         }
+
         .logo {
             width: 100px;
             height: 100px;
@@ -174,6 +209,7 @@
             border-radius: 50%;
             animation: rotateIn 1s ease-in-out;
         }
+
         @keyframes rotateIn {
             from {
                 transform: rotate(0deg);
@@ -182,6 +218,7 @@
                 transform: rotate(360deg);
             }
         }
+
         .theme-switch {
             position: absolute;
             top: 30px;
@@ -189,9 +226,11 @@
             display: flex;
             align-items: center;
         }
+
         .theme-switch input {
             display: none;
         }
+
         .theme-switch label {
             position: relative;
             display: block;
@@ -202,6 +241,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .theme-switch label::after {
             content: '☀️';
             position: absolute;
@@ -217,30 +257,36 @@
             justify-content: center;
             font-size: 18px;
         }
+
         .theme-switch input:checked + label {
             background-color: #007bff;
         }
+
         .theme-switch input:checked + label::after {
             transform: translateX(30px);
             content: '🌙';
         }
+
         .close-icon {
             font-size: 1.8em;
             cursor: pointer;
         }
+
         .header {
             position: absolute;
             top: 30px;
             left: 50%;
             transform: translateX(-50%);
             font-size: 1.8em;
-            color: #4a4a4a;
+            color: var(--text-light);
             animation: slideDown 1s ease-in-out;
             transition: color 1s ease-in-out;
         }
+
         .header.dark-mode {
-            color: #f0f0f0;
+            color: var(--text-dark);
         }
+
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -251,6 +297,7 @@
                 transform: translateX(-50%) translateY(0);
             }
         }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -270,6 +317,7 @@
                 font-size: 1.5em;
             }
         }
+
         .social-button {
             display: inline-block;
             margin-top: 30px;
@@ -283,12 +331,11 @@
             animation: fadeIn 1s ease-in-out 0.5s backwards;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .social-button.discord {
-            background-color: #7289DA;
-        }
+
         .social-button.telegram {
             background-color: #0088CC;
         }
+
         .social-button:hover {
             transform: scale(1.05);
         }
@@ -310,9 +357,6 @@
             </a>
             <a href="#" class="button" id="learn-more-btn">
                 <span class="icon">📚</span> Узнать больше
-            </a>
-            <a href="https://discord.com" class="social-button discord" target="_blank">
-                <span class="icon">🌐</span> Discord
             </a>
             <a href="https://telegram.org" class="social-button telegram" target="_blank">
                 <span class="icon">🌐</span> Telegram
